@@ -1,0 +1,14 @@
+U:\repos\MyWorld\MyWorld\bin\Debug\netcoreapp2.2\MyWorld.deps.json
+U:\repos\MyWorld\MyWorld\bin\Debug\netcoreapp2.2\MyWorld.runtimeconfig.json
+U:\repos\MyWorld\MyWorld\bin\Debug\netcoreapp2.2\MyWorld.runtimeconfig.dev.json
+U:\repos\MyWorld\MyWorld\bin\Debug\netcoreapp2.2\MyWorld.dll
+U:\repos\MyWorld\MyWorld\bin\Debug\netcoreapp2.2\MyWorld.pdb
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.csprojAssemblyReference.cache
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.csproj.CoreCompileInputs.cache
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.RazorAssemblyInfo.cache
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.RazorAssemblyInfo.cs
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.AssemblyInfoInputs.cache
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.AssemblyInfo.cs
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.RazorTargetAssemblyInfo.cache
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.dll
+U:\repos\MyWorld\MyWorld\obj\Debug\netcoreapp2.2\MyWorld.pdb
