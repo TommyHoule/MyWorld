@@ -40,8 +40,7 @@ namespace MyWorld.Models
                 _worlds.Add(worldToAdd);
             }
             else{
-                //modify to throw a personalized exception here
-                throw new NotImplementedException();
+                throw new AlreadyExistingWorldException();
             }
         }
 
