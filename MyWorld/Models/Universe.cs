@@ -7,7 +7,7 @@ namespace MyWorld.Models
     {
         //Private members
         private Guid _universeID;
-        private string _name { get; set; }
+        private string _name;
         private ArrayList _worlds;
 
         //Constructor
