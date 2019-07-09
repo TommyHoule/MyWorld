@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="test.csproj" />
+    <ProjectReference Include="../src/MyWorld.csproj" />
   </ItemGroup>
 
 </Project>
