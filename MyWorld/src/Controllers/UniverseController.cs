@@ -1,19 +1,46 @@
 using Microsoft.AspNetCore.Mvc;
-using MyWorld.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
+using MyWorld.Models;
 
 namespace MyWorld.Controllers
 {
-    [Route("v1/[controller]")]
+    [Route("/")]
+    [ApiController]
     public class UniverseController : Controller
     {
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<Universe>), 200)]
-        public Task<IActionResult> ReadAllAsync()
+        private readonly UniverseContext _context;
+        private readonly Universe originalUniverse = new Universe { 
+            Name = "Universe", 
+            Description = "Welcome To the project starting point! \n The Universe"
+        };
+
+        public UniverseController(UniverseContext context)
         {
-            throw new NotImplementedException();
+            _context = context ?? throw new ArgumentNullException("Failed to initialize UniverseContext !");
         }
+
+        // GET /
+        [HttpGet]
+        public async Task<ActionResult<string>> GetOriginalUniverse()
+        {
+            if(_context.UniverseItems.Count() == 0)
+            {
+                await _context.UniverseItems.AddAsync(originalUniverse);
+                await _context.SaveChangesAsync();
+            }
+            var originalUniverseFromDB = await _context.UniverseItems.FindAsync((long)1);
+            if( originalUniverseFromDB == null )
+            {
+                return "Not Found";
+            }
+            return originalUniverseFromDB.getInfo();
+        }
+
     }
 }
