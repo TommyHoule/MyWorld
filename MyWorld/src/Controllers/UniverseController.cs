@@ -34,7 +34,7 @@ namespace MyWorld.Controllers
                 await _context.UniverseItems.AddAsync(originalUniverse);
                 await _context.SaveChangesAsync();
             }
-            var originalUniverseFromDB = await _context.UniverseItems.FindAsync(originalUniverse.Id);
+            var originalUniverseFromDB = await _context.UniverseItems.FindAsync((long)1);
             if( originalUniverseFromDB == null )
             {
                 return "Not Found";
