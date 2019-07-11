@@ -29,7 +29,7 @@ namespace MyWorld
         public void ConfigureServices(IServiceCollection services)
         {
             services
-            .AddDbContext<UniverseContext>( options => options.UseInMemoryDatabase("UniverseList"))
+            .AddDbContext<UniverseDbContext>( options => options.UseInMemoryDatabase("UniverseList"))
             .AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

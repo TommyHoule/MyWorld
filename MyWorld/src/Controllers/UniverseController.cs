@@ -14,13 +14,13 @@ namespace MyWorld.Controllers
     [ApiController]
     public class UniverseController : Controller
     {
-        private readonly UniverseContext _context;
+        private readonly UniverseDbContext _context;
         private readonly Universe originalUniverse = new Universe { 
             Name = "Universe", 
             Description = "Welcome To the project starting point! \n The Universe"
         };
 
-        public UniverseController(UniverseContext context)
+        public UniverseController(UniverseDbContext context)
         {
             _context = context ?? throw new ArgumentNullException("Failed to initialize UniverseContext !");
         }
