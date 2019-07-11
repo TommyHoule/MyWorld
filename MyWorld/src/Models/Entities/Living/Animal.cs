@@ -1,5 +1,5 @@
 namespace MyWorld.Models{
-    public class Human : LivingObject
+    public class Animal : AbstractLivingEntity
     {
         
     }
