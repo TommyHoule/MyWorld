@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System;
 
@@ -48,12 +49,27 @@ namespace MyWorld.Controllers
 
         // POST /
         [HttpPost]
-        public async Task<ActionResult<Universe>> PostUniverse(Universe universe)
+        public async Task<ActionResult<Universe>> PostUniverse(Universe item)
         {
-            await _context.UniverseItems.AddAsync(universe);
+            await _context.UniverseItems.AddAsync(item);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUniverseInfo), new { id = universe.Id }, universe);
+            return CreatedAtAction(nameof(GetUniverseInfo), new { id = item.Id }, item);
+        }
+
+        // PUT: api/Todo/5
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoItem(long id, Universe item)
+        {
+            if (id != item.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(item).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
