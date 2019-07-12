@@ -1,14 +1,6 @@
 namespace MyWorld.Models{
-    public class Profession
+    public class Profession : AbstractModel
     {
-        private string _name;
-
-        public Profession(string name){
-            _name = name;
-        }
-
-        public string getProfessionName(){
-            return _name;
-        }
+        
     }
 }

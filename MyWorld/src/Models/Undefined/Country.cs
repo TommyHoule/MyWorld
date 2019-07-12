@@ -3,14 +3,8 @@ using System.Collections;
 
 namespace MyWorld.Models
 {
-    public class Country
+    public class Country : AbstractModel
     {
         
-        private Guid _countryID;
-        private string _name;
-        public Country(string name){
-            _countryID = Guid.NewGuid();
-            _name = name;
-        }
     }
 }
