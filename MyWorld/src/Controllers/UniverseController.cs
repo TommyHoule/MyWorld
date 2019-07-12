@@ -15,6 +15,9 @@ namespace MyWorld.Controllers
     public class UniverseController : Controller
     {
         private readonly UniverseDbContext _context;
+        private readonly Universe originalUniverse = new Universe {
+            Name = "Universe", 
+            Description = "Welcome To the project starting point! \n The Universe"};
 
         public UniverseController(UniverseDbContext context)
         {
@@ -27,31 +30,33 @@ namespace MyWorld.Controllers
         {
             if(_context.UniverseItems.Count() == 0)
             {
-                await _context.UniverseItems.AddAsync(new Universe { 
-                    Name = "Universe", 
-                    Description = "Welcome To the project starting point! \n The Universe"
-                });
+                await PostUniverse(originalUniverse);
                 await _context.SaveChangesAsync();
             }
-            var originalUniverseFromDB = await _context.UniverseItems.FindAsync((long)1);
-            if( originalUniverseFromDB == null )
+            return await GetUniverse((long)1);
+        }
+
+        // GET /8
+        [HttpGet("{id}")]
+        public async Task<ActionResult<string>> GetUniverse(long id)
+        {
+            var UniverseFromDB = await _context.UniverseItems.FindAsync(id);
+            if( UniverseFromDB == null )
             {
                 return "Not Found";
             }
-            return originalUniverseFromDB.getInfo();
+            return UniverseFromDB.getInfo();
+            //will have to return direvtly a universe object
         }
 
-        //public async Task<ActionResult<Universe>> PostUniverse(Universe item)
         // POST /
         [HttpPost]
         public async Task<ActionResult<Universe>> PostUniverse(Universe universe)
         {
-            _context.UniverseItems.Add(universe);
-            
+            await _context.UniverseItems.AddAsync(universe);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetOriginalUniverse), new { id = universe.Id }, universe);
         }
-
     }
 }
