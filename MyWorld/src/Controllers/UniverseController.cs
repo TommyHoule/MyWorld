@@ -16,6 +16,7 @@ namespace MyWorld.Controllers
     {
         private readonly UniverseDbContext _context;
         private readonly Universe originalUniverse = new Universe { 
+            Id = 1,
             Name = "Universe", 
             Description = "Welcome To the project starting point! \n The Universe"
         };
