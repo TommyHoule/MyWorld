@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using MyWorld.Models;
 
@@ -26,19 +23,19 @@ namespace MyWorld.Controllers
 
         // GET /
         [HttpGet]
-        public async Task<ActionResult<string>> GetOriginalUniverse()
+        public async Task<ActionResult<string>> GetOriginalUniverseInfo()
         {
             if(_context.UniverseItems.Count() == 0)
             {
                 await PostUniverse(originalUniverse);
                 await _context.SaveChangesAsync();
             }
-            return await GetUniverse((long)1);
+            return await GetUniverseInfo((long)1);
         }
 
         // GET /8
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> GetUniverse(long id)
+        public async Task<ActionResult<string>> GetUniverseInfo(long id)
         {
             var UniverseFromDB = await _context.UniverseItems.FindAsync(id);
             if( UniverseFromDB == null )
@@ -56,7 +53,7 @@ namespace MyWorld.Controllers
             await _context.UniverseItems.AddAsync(universe);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOriginalUniverse), new { id = universe.Id }, universe);
+            return CreatedAtAction(nameof(GetUniverseInfo), new { id = universe.Id }, universe);
         }
     }
 }
