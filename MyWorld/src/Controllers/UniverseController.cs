@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 using MyWorld.Models;
 
@@ -15,11 +15,6 @@ namespace MyWorld.Controllers
     public class UniverseController : Controller
     {
         private readonly UniverseDbContext _context;
-        private readonly Universe originalUniverse = new Universe { 
-            Id = 1,
-            Name = "Universe", 
-            Description = "Welcome To the project starting point! \n The Universe"
-        };
 
         public UniverseController(UniverseDbContext context)
         {
@@ -32,7 +27,10 @@ namespace MyWorld.Controllers
         {
             if(_context.UniverseItems.Count() == 0)
             {
-                await _context.UniverseItems.AddAsync(originalUniverse);
+                await _context.UniverseItems.AddAsync(new Universe { 
+                    Name = "Universe", 
+                    Description = "Welcome To the project starting point! \n The Universe"
+                });
                 await _context.SaveChangesAsync();
             }
             var originalUniverseFromDB = await _context.UniverseItems.FindAsync((long)1);
@@ -41,6 +39,18 @@ namespace MyWorld.Controllers
                 return "Not Found";
             }
             return originalUniverseFromDB.getInfo();
+        }
+
+        //public async Task<ActionResult<Universe>> PostUniverse(Universe item)
+        // POST /
+        [HttpPost]
+        public async Task<ActionResult<Universe>> PostUniverse(Universe universe)
+        {
+            _context.UniverseItems.Add(universe);
+            
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetOriginalUniverse), new { id = universe.Id }, universe);
         }
 
     }
